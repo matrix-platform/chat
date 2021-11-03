@@ -26,15 +26,15 @@ trait NewPrivateMessage {
         foreach ($chat['participants'] as $participant) {
             $id = $participant['chat_member_id'];
 
-            if ($id === $message['chat_member_id']) {
+            if ($id !== $message['chat_member_id']) {
                 model('ChatMessageLog')->insert([
                     'chat_id' => $chat['id'],
                     'message_id' => $message['id'],
                     'receiver_id' => $id,
                 ]);
-
-                $message['receivers'][] = $id;
             }
+
+            $message['receivers'][] = $id;
         }
 
         return $message;
