@@ -10,8 +10,6 @@ return new class('ChatParticipant') extends matrix\web\backend\ListController {
         $this->columns([
             'name',
             'join_time',
-            'view_time',
-            'remove_time',
         ]);
     }
 
