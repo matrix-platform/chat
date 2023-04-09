@@ -24,8 +24,7 @@ $tbl->add('type', Integer::class)
     ->required(true);
 
 $tbl->add('content', Text::class)
-    ->readonly(true)
-    ->required(true);
+    ->readonly(true);
 
 $tbl->add('data', Text::class)
     ->invisible(true)
@@ -39,9 +38,6 @@ $tbl->add('reader_count', Integer::class)
 
 $tbl->add('create_time', CreateTime::class)
     ->required(true);
-
-$tbl->add('cancel_type', Integer::class)
-    ->options(load_options('chat-message-cancel-type'));
 
 $tbl->add('cancel_time', Timestamp::class);
 

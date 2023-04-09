@@ -21,21 +21,15 @@ trait NewPrivateMessage {
             'data' => json_encode($data, JSON_UNESCAPED_UNICODE),
         ]);
 
-        $message['receivers'] = [];
-
         foreach ($chat['participants'] as $participant) {
-            $id = $participant['chat_member_id'];
-
-            if ($id !== $message['chat_member_id']) {
-                model('ChatMessageLog')->insert([
-                    'chat_id' => $chat['id'],
-                    'message_id' => $message['id'],
-                    'receiver_id' => $id,
-                ]);
-            }
-
-            $message['receivers'][] = $id;
+            model('ChatMessageLog')->insert([
+                'participant_id' => $participant['id'],
+                'message_id' => $message['id'],
+                'read_time' => ($message['chat_member_id'] === $participant['chat_member_id']) ? date(cfg('system.timestamp')) : null,
+            ]);
         }
+
+        $message['participants'] = $chat['participants'];
 
         return $message;
     }

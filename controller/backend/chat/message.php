@@ -13,7 +13,6 @@ return new class('ChatMessage') extends matrix\web\backend\ListController {
             'content',
             'reader_count',
             'create_time',
-            'cancel_type',
             'cancel_time',
         ]);
     }

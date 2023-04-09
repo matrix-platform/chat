@@ -6,8 +6,8 @@ use matrix\db\Table;
 
 $tbl = new Table('base_chat_message_log', false);
 
-$tbl->add('chat_id', Integer::class)
-    ->associate('chat', 'Chat', true)
+$tbl->add('participant_id', Integer::class)
+    ->associate('participant', 'ChatParticipant', true)
     ->readonly(true)
     ->required(true);
 
@@ -16,11 +16,8 @@ $tbl->add('message_id', Integer::class)
     ->readonly(true)
     ->required(true);
 
-$tbl->add('receiver_id', Integer::class)
-    ->associate('receiver', 'ChatMember')
-    ->readonly(true)
-    ->required(true);
-
 $tbl->add('read_time', Timestamp::class);
+
+$tbl->add('deleted_time', Timestamp::class);
 
 return $tbl;

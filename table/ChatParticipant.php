@@ -25,8 +25,6 @@ $tbl->add('target_id', Integer::class)
 $tbl->add('join_time', CreateTime::class)
     ->required(true);
 
-$tbl->add('last_message_id', Integer::class);
-
 $tbl->add('remove_time', Timestamp::class);
 
 return $tbl;

@@ -12,8 +12,6 @@ return [
 
     'create_time' => '建立時間',
 
-    'cancel_type' => '取消原因',
-
-    'cancel_time' => '取消時間',
+    'cancel_time' => '回收時間',
 
 ];

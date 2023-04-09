@@ -5,16 +5,14 @@ namespace matrix\chat;
 trait NotifyNewMessage {
 
     private function notify($message) {
-        if (@$message['receivers']) {
-            $url = cfg('system.event-notify-url');
+        $url = cfg('system.event-notify-url');
 
-            foreach ($message['receivers'] as $receiver) {
-                @file_get_contents($url . '?' . http_build_query([
-                    'type' => 'new-message',
-                    'chat_id' => $message['chat_id'],
-                    'id' => $receiver,
-                ]));
-            }
+        foreach ($message['participants'] as $participant) {
+            @file_get_contents($url . '?' . http_build_query([
+                'type' => 'new-message',
+                'id' => $participant['chat_member_id'],
+                'target_id' => $participant['target_id'],
+            ]));
         }
     }
 
